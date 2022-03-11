@@ -1,3 +1,5 @@
 /** @format */
 
-console.log("hello, world!");
+import { MonkeytypeClient } from "./client/monkeytype-client";
+
+export { MonkeytypeClient };
