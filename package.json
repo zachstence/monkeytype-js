@@ -1,6 +1,6 @@
 {
   "name": "monkeytype-js",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "An NPM package for interacting with the Monkeytype API",
   "main": "dist/index.js",
   "repository": "https://github.com/Ferotiq/monkeytype-js.git",
