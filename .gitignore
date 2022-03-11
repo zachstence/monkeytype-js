@@ -1,2 +1,5 @@
 dist/
+types/
 node_modules/
+config.json
+yarn-error.log

@@ -9,5 +9,8 @@
   "scripts": {
     "build": "tsc"
   },
-  "types": "./types"
+  "types": "./types",
+  "dependencies": {
+    "node-fetch-commonjs": "^3.1.1"
+  }
 }
