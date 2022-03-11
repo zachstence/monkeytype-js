@@ -1,2 +1,2 @@
 # monkeytype-js
- An NPM package for interacting with the MonkeyType API
+ An NPM package for interacting with the Monkeytype API
