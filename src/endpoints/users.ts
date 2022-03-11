@@ -2,6 +2,8 @@
 
 import { FetchClient } from "../client/fetch-client";
 
+import type { Mode, Mode2, PersonalBests } from "../types";
+
 export class UsersEndpoint {
   private _apeKey: string;
   private fetchClient: FetchClient;
@@ -12,10 +14,10 @@ export class UsersEndpoint {
   }
 
   /** Gets your own personal bests */
-  public getPersonalBests<M extends MonkeyTypes.Mode>(
+  public getPersonalBests<M extends Mode>(
     mode: M,
-    mode2: MonkeyTypes.Mode2<M>
-  ): Promise<MonkeyTypes.PersonalBests | undefined> {
+    mode2: Mode2<M>
+  ): Promise<PersonalBests | undefined> {
     return this.fetchClient.get("users/personalBests", {
       apeKey: this._apeKey,
       params: { mode, mode2: <string>mode2 }

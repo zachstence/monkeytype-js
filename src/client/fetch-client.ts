@@ -2,6 +2,8 @@
 
 import fetch from "node-fetch";
 
+import type { FetchOptions, Params } from "../types";
+
 export class FetchClient {
   private url: string;
 
@@ -9,10 +11,7 @@ export class FetchClient {
     this.url = url;
   }
 
-  public async get(
-    url: string,
-    options: MonkeyTypes.FetchOptions
-  ): Promise<any> {
+  public async get(url: string, options: FetchOptions): Promise<any> {
     try {
       const params = this.paramsToString(options.params);
 
@@ -34,10 +33,7 @@ export class FetchClient {
     }
   }
 
-  public async post(
-    url: string,
-    options: MonkeyTypes.FetchOptions
-  ): Promise<any> {
+  public async post(url: string, options: FetchOptions): Promise<any> {
     try {
       const params = this.paramsToString(options.params);
 
@@ -59,10 +55,7 @@ export class FetchClient {
     }
   }
 
-  public async patch(
-    url: string,
-    options: MonkeyTypes.FetchOptions
-  ): Promise<any> {
+  public async patch(url: string, options: FetchOptions): Promise<any> {
     try {
       const params = this.paramsToString(options.params);
 
@@ -84,10 +77,7 @@ export class FetchClient {
     }
   }
 
-  public async put(
-    url: string,
-    options: MonkeyTypes.FetchOptions
-  ): Promise<any> {
+  public async put(url: string, options: FetchOptions): Promise<any> {
     try {
       const params = this.paramsToString(options.params);
 
@@ -109,7 +99,7 @@ export class FetchClient {
     }
   }
 
-  private paramsToString(params: MonkeyTypes.Params): string {
+  private paramsToString(params: Params): string {
     const entries = Object.entries(params);
 
     if (entries.length === 0) return "";

@@ -1,48 +1,62 @@
 /** @format */
 
-declare namespace MonkeyTypes {
-  type Mode = "time" | "words" | "quote" | "zen" | "custom";
+export type Difficulty = "normal" | "expert" | "master";
 
-  type Mode2<M extends Mode> = keyof PersonalBests[M];
+export type Mode = "time" | "words" | "quote" | "zen" | "custom";
 
-  interface Params {
-    [key: string]: string | number | undefined;
-  }
+export type Mode2<M extends Mode> = keyof PersonalBests[M];
 
-  interface FetchOptions {
-    apeKey: string;
-    params: Params;
-  }
+export type test = Mode2<"time">;
 
-  interface PersonalBests {
-    time: {
-      [key: number]: PersonalBest[];
-    };
-    words: {
-      [key: number]: PersonalBest[];
-    };
-    quote: { [quote: string]: PersonalBest[] };
-    custom: { custom: PersonalBest[] };
-    zen: {
-      zen: PersonalBest[];
-    };
-  }
+export interface Params {
+  [key: string]: string | number | undefined;
+}
 
-  interface LeaderboardEntry {
-    _id: string;
-    difficulty: string;
-    timestamp: number;
-    language: string;
-    wpm: number;
-    consistency: number | "-";
-    punctuation: boolean;
-    acc: number;
-    raw: number;
-    uid?: string;
-    name: string;
-    discordId?: string;
-    rank: number;
-    count?: number;
-    hidden?: boolean;
-  }
+export interface FetchOptions {
+  apeKey: string;
+  params: Params;
+}
+
+export interface PersonalBest {
+  acc: number;
+  consistency: number;
+  difficulty: Difficulty;
+  lazyMode: boolean;
+  language: string;
+  punctuation: boolean;
+  raw: number;
+  wpm: number;
+  timestamp: number;
+}
+
+export interface PersonalBests {
+  time: {
+    [key: number]: PersonalBest[];
+  };
+  words: {
+    [key: number]: PersonalBest[];
+  };
+  quote: { [quote: string]: PersonalBest[] };
+  custom: { custom: PersonalBest[] };
+  zen: {
+    zen: PersonalBest[];
+  };
+}
+
+export interface LeaderboardEntry {
+  _id: string;
+  difficulty: string;
+  timestamp: number;
+  language: string;
+  wpm: number;
+  consistency: number | "-";
+  punctuation: boolean;
+  acc: number;
+  raw: number;
+  uid?: string;
+  name: string;
+  discordId?: string;
+  rank: number;
+  count?: number;
+  hidden?: boolean;
 }
