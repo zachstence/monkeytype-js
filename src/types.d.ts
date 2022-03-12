@@ -6,15 +6,23 @@ export type Mode = "time" | "words" | "quote" | "zen" | "custom";
 
 export type Mode2<M extends Mode> = keyof PersonalBests[M];
 
-export type test = Mode2<"time">;
-
-export interface Params {
+export interface Query {
   [key: string]: string | number | undefined;
 }
 
-export interface FetchOptions {
-  // apeKey: string;
-  params: Params;
+
+export type HttpClientMethod = <T>(path: string, options: HttpClientOptions) => Promise<ApiResponse<T>>;
+
+export interface HttpClient {
+  get: HttpClientMethod;
+  post: HttpClientMethod;
+  patch: HttpClientMethod;
+  put: HttpClientMethod;
+  delete: HttpClientMethod;
+}
+
+export interface HttpClientOptions {
+  query: Query;
 }
 
 export interface PersonalBest {
@@ -29,6 +37,11 @@ export interface PersonalBest {
   timestamp: number;
 }
 
+export interface ApiResponse<T> {
+  message: string;
+  data: T;
+}
+
 export interface PersonalBests {
   time: {
     [key: number]: PersonalBest[];
@@ -36,8 +49,12 @@ export interface PersonalBests {
   words: {
     [key: number]: PersonalBest[];
   };
-  quote: { [quote: string]: PersonalBest[] };
-  custom: { custom: PersonalBest[] };
+  quote: {
+    [quote: string]: PersonalBest[]
+  };
+  custom: {
+    custom: PersonalBest[]
+  };
   zen: {
     zen: PersonalBest[];
   };
@@ -45,18 +62,12 @@ export interface PersonalBests {
 
 export interface LeaderboardEntry {
   _id: string;
-  difficulty: string;
   timestamp: number;
-  language: string;
   wpm: number;
-  consistency: number | "-";
+  consistency: number;
   punctuation: boolean;
   acc: number;
   raw: number;
-  uid?: string;
   name: string;
-  discordId?: string;
   rank: number;
-  count?: number;
-  hidden?: boolean;
 }
