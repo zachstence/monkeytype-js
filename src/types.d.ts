@@ -13,7 +13,7 @@ export interface Params {
 }
 
 export interface FetchOptions {
-  apeKey: string;
+  // apeKey: string;
   params: Params;
 }
 

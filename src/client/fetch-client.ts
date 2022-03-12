@@ -5,10 +5,12 @@ import fetch from "node-fetch";
 import type { FetchOptions, Params } from "../types";
 
 export class FetchClient {
+  private _apeKey: string;
   private url: string;
 
-  public constructor(url: string) {
+  public constructor(url: string, apeKey: string) {
     this.url = url;
+    this._apeKey = apeKey;
   }
 
   public async get(url: string, options: FetchOptions): Promise<any> {
@@ -18,7 +20,7 @@ export class FetchClient {
       const response = await fetch(`${this.url}/${url}${params}`, {
         method: "GET",
         headers: {
-          Authorization: `ApeKey ${options.apeKey}`
+          Authorization: `ApeKey ${this._apeKey}`
         }
       });
 
@@ -40,7 +42,7 @@ export class FetchClient {
       const response = await fetch(`${this.url}/${url}${params}`, {
         method: "POST",
         headers: {
-          Authorization: `ApeKey ${options.apeKey}`
+          Authorization: `ApeKey ${this._apeKey}`
         }
       });
 
@@ -62,7 +64,7 @@ export class FetchClient {
       const response = await fetch(`${this.url}/${url}${params}`, {
         method: "PATCH",
         headers: {
-          Authorization: `ApeKey ${options.apeKey}`
+          Authorization: `ApeKey ${this._apeKey}`
         }
       });
 
@@ -84,7 +86,7 @@ export class FetchClient {
       const response = await fetch(`${this.url}/${url}${params}`, {
         method: "PUT",
         headers: {
-          Authorization: `ApeKey ${options.apeKey}`
+          Authorization: `ApeKey ${this._apeKey}`
         }
       });
 
