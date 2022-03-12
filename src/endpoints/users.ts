@@ -1,23 +1,26 @@
 /** @format */
 
-import { FetchClient } from "../client/fetch-client";
+import type { ApiResponse, HttpClient, Mode, Mode2, PersonalBests } from "../types";
 
-import type { Mode, Mode2, PersonalBests } from "../types";
+const BASE_PATH = "/users";
 
-export class UsersEndpoint {
-  private fetchClient: FetchClient;
+export class UsersEndpoints {
+  private httpClient: HttpClient;
 
-  public constructor(fetchClient: FetchClient) {
-    this.fetchClient = fetchClient;
+  public constructor(httpClient: HttpClient) {
+    this.httpClient = httpClient;
   }
 
   /** Gets your own personal bests */
-  public getPersonalBests<M extends Mode>(
+  public async getPersonalBests<M extends Mode>(
     mode: M,
     mode2: Mode2<M>
-  ): Promise<PersonalBests | undefined> {
-    return this.fetchClient.get("users/personalBests", {
-      params: { mode, mode2: <string>mode2 }
-    });
+  ): Promise<ApiResponse<PersonalBests[M]>> {
+    const query = {
+      mode,
+      mode2: <string>mode2,
+    };
+
+    return this.httpClient.get(`${BASE_PATH}/personalBests`, { query });
   }
 }

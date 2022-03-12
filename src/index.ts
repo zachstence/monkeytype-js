@@ -1,5 +1,5 @@
 /** @format */
 
-import { MonkeytypeClient } from "./client/monkeytype-client";
+import { MonkeytypeClient } from "./clients/monkeytype-client";
 
 export { MonkeytypeClient };

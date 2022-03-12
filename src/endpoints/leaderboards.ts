@@ -1,37 +1,53 @@
 /** @format */
 
-import { FetchClient } from "../client/fetch-client";
+import type { Mode, LeaderboardEntry, Mode2, HttpClient, ApiResponse } from "../types";
 
-import type { Mode, Mode2, LeaderboardEntry } from "../types";
+const BASE_PATH = "/leaderboards"
 
-export class LeaderboardsEndpoint {
-  private fetchClient: FetchClient;
+export class LeaderboardsEndpoints {
+  private httpClient: HttpClient;
 
-  public constructor(fetchClient: FetchClient) {
-    this.fetchClient = fetchClient;
+  public constructor(httpClient: HttpClient) {
+    this.httpClient = httpClient;
   }
 
   /** Gets global leaderboard data */
-  public get<M extends Mode>(
+  public async get<M extends Mode>(
     language: string,
     mode: M,
     mode2: Mode2<M>,
     skip?: number,
     limit?: number
-  ): Promise<LeaderboardEntry[] | undefined> {
-    return this.fetchClient.get("leaderboards", {
-      params: { language, mode, mode2: <string>mode2, skip, limit }
-    });
+  ): Promise<ApiResponse<LeaderboardEntry[]>> {
+    const query = {
+      language,
+      mode,
+      mode2: <string>mode2,
+      skip: skip === undefined ? 0: skip,
+      limit: limit === undefined ? 50: limit,
+    };
+
+    return this.httpClient.get(BASE_PATH, { query });
   }
 
-  /** Gets your entry from the leaderboard */
-  public getRank<M extends Mode>(
+  /**
+   * Gets your qualifying leaderboard entry from the specified leaderboard
+   * @param language The leaderboard's language
+   * @param mode The leaderboard's primary mode
+   * @param mode2 The leaderboard's secondary mode
+   * @returns Your qualifying leaderboard entry from the specified leaderboard
+   */
+  public async getRank<M extends Mode>(
     language: string,
     mode: M,
     mode2: Mode2<M>
-  ): Promise<LeaderboardEntry | undefined> {
-    return this.fetchClient.get("leaderboards/rank", {
-      params: { language, mode, mode2: <string>mode2 }
-    });
+  ): Promise<ApiResponse<LeaderboardEntry>> {
+    const query = {
+      language,
+      mode,
+      mode2: <string>mode2,
+    };
+
+    return this.httpClient.get(`${BASE_PATH}/rank`, { query });
   }
 }
