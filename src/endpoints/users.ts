@@ -14,11 +14,11 @@ export class UsersEndpoints {
   /** Gets your own personal bests */
   public async getPersonalBests<M extends Mode>(
     mode: M,
-    mode2: Mode2<M>
+    mode2?: Mode2<M>,
   ): Promise<ApiResponse<PersonalBests[M]>> {
     const query = {
       mode,
-      mode2: <string>mode2,
+      ...(mode2 !== undefined && { mode2: <string>mode2 }),
     };
 
     return this.httpClient.get(`${BASE_PATH}/personalBests`, { query });

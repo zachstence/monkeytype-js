@@ -7,11 +7,22 @@
   "author": "Ferotiq <evanrayweigel@outlook.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc --build"
+    "build": "tsc --build",
+    "pretty": "prettier ./ --check",
+    "pretty:fix": "prettier ./ --write",
+    "lint": "eslint ./src/**/*.ts",
+    "lint:fix": "eslint ./src/**/*.ts --fix"
   },
   "types": "./types",
   "dependencies": {
     "node-fetch": "2.6.7"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/node-fetch": "2.6.1",
+    "@typescript-eslint/eslint-plugin": "5.15.0",
+    "@typescript-eslint/parser": "5.15.0",
+    "eslint": "8.11.0",
+    "prettier": "2.6.0",
+    "typescript": "4.6.2"
+  }
 }

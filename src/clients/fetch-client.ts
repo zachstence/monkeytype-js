@@ -2,7 +2,9 @@
 
 import fetch from "node-fetch";
 
-import type { ApiResponse, HttpClientOptions, HttpClient, Query } from "../types";
+import { stringifyQuery } from "../util";
+
+import type { ApiResponse, HttpClientOptions, HttpClient } from "../types";
 
 export class FetchClient implements HttpClient {
   private apeKey: string;
@@ -13,15 +15,19 @@ export class FetchClient implements HttpClient {
     this.apeKey = apeKey;
   }
 
-  private async makeRequest<T>(path: string, method: string, options: HttpClientOptions): Promise<any> {
+  private async makeRequest<T>(
+    path: string,
+    method: string,
+    options: HttpClientOptions,
+  ): Promise<any> {
     try {
-      const params = this.stringifyQuery(options.query);
+      const params = stringifyQuery(options.query);
 
       const response = await fetch(`${this.baseUrl}${path}${params}`, {
         method,
         headers: {
-          Authorization: `ApeKey ${this.apeKey}`
-        }
+          Authorization: `ApeKey ${this.apeKey}`,
+        },
       });
 
       const apiResponse: ApiResponse<T> = await response.json();
@@ -50,19 +56,5 @@ export class FetchClient implements HttpClient {
 
   public async delete<T>(url: string, options: HttpClientOptions): Promise<ApiResponse<T>> {
     return await this.makeRequest<T>(url, "DELETE", options);
-  }
-
-  private stringifyQuery(query: Query): string {
-    const entries = Object.entries(query);
-
-    if (entries.length === 0) {
-      return ""
-    }
-
-    const queryString = entries
-      .map(([paramName, paramValue]) => `${paramName}=${paramValue}`)
-      .join("&")
-
-    return `?${queryString}`;
   }
 }

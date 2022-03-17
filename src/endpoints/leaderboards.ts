@@ -2,7 +2,7 @@
 
 import type { Mode, LeaderboardEntry, Mode2, HttpClient, ApiResponse } from "../types";
 
-const BASE_PATH = "/leaderboards"
+const BASE_PATH = "/leaderboards";
 
 export class LeaderboardsEndpoints {
   private httpClient: HttpClient;
@@ -17,14 +17,14 @@ export class LeaderboardsEndpoints {
     mode: M,
     mode2: Mode2<M>,
     skip?: number,
-    limit?: number
+    limit?: number,
   ): Promise<ApiResponse<LeaderboardEntry[]>> {
     const query = {
       language,
       mode,
       mode2: <string>mode2,
-      skip: skip === undefined ? 0: skip,
-      limit: limit === undefined ? 50: limit,
+      skip: skip === undefined ? 0 : skip,
+      limit: limit === undefined ? 50 : limit,
     };
 
     return this.httpClient.get(BASE_PATH, { query });
@@ -40,7 +40,7 @@ export class LeaderboardsEndpoints {
   public async getRank<M extends Mode>(
     language: string,
     mode: M,
-    mode2: Mode2<M>
+    mode2: Mode2<M>,
   ): Promise<ApiResponse<LeaderboardEntry>> {
     const query = {
       language,

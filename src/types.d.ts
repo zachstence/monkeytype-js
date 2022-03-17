@@ -10,8 +10,10 @@ export interface Query {
   [key: string]: string | number | undefined;
 }
 
-
-export type HttpClientMethod = <T>(path: string, options: HttpClientOptions) => Promise<ApiResponse<T>>;
+export type HttpClientMethod = <T>(
+  path: string,
+  options: HttpClientOptions,
+) => Promise<ApiResponse<T>>;
 
 export interface HttpClient {
   get: HttpClientMethod;
@@ -50,10 +52,10 @@ export interface PersonalBests {
     [key: number]: PersonalBest[];
   };
   quote: {
-    [quote: string]: PersonalBest[]
+    [quote: string]: PersonalBest[];
   };
   custom: {
-    custom: PersonalBest[]
+    custom: PersonalBest[];
   };
   zen: {
     zen: PersonalBest[];
