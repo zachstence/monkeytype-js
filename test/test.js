@@ -1,5 +1,3 @@
-/** @format */
-
 const { MonkeytypeClient } = require("../dist/index.js");
 
 const { apeKey } = require("./config.json");

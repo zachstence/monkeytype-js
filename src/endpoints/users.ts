@@ -1,5 +1,3 @@
-/** @format */
-
 import type { ApiResponse, HttpClient, Mode, Mode2, PersonalBests, Query } from "../types";
 
 const BASE_PATH = "/users";

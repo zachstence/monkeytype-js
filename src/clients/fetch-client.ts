@@ -1,5 +1,3 @@
-/** @format */
-
 import fetch from "node-fetch";
 
 import { stringifyQuery } from "../util";

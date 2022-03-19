@@ -1,5 +1,3 @@
-/** @format */
-
 import type { Mode, LeaderboardEntry, Mode2, HttpClient, ApiResponse } from "../types";
 
 const BASE_PATH = "/leaderboards";

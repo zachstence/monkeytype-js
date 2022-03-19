@@ -1,5 +1,3 @@
-/** @format */
-
 export type Difficulty = "normal" | "expert" | "master";
 
 export type Mode = "time" | "words" | "quote" | "zen" | "custom";

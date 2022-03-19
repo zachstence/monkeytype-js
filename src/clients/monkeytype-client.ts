@@ -1,5 +1,3 @@
-/** @format */
-
 import { FetchClient } from "./fetch-client";
 import { UsersEndpoints } from "../endpoints/users";
 import { LeaderboardsEndpoints } from "../endpoints/leaderboards";
