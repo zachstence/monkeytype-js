@@ -2,5 +2,6 @@ dist/
 types/
 node_modules/
 config.json
+test.json
 yarn-error.log
 .DS_Store

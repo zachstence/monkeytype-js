@@ -11,7 +11,8 @@
     "pretty": "prettier ./ --check",
     "pretty:fix": "prettier ./ --write",
     "lint": "eslint ./src/**/*.ts",
-    "lint:fix": "eslint ./src/**/*.ts --fix"
+    "lint:fix": "eslint ./src/**/*.ts --fix",
+    "test": "node test/test.js"
   },
   "types": "./types",
   "dependencies": {
