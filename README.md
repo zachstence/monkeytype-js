@@ -12,7 +12,7 @@ const { MonkeytypeClient } = require("monkeytype-js");
 const monkeytypeClient = new MonkeytypeClient("<YOUR-APE-KEY>");
 
 (async () => {
-  const { data } = await monkeytypeClient.users.getPersonalBests("time", "15");
+  const { data } = await monkeytypeClient.users.getPersonalBests("time", 15);
   console.log(data);
 })();
 ```
