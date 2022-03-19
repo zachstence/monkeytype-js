@@ -17,11 +17,11 @@ export class UsersEndpoints {
     mode2?: Mode2<M>,
   ): Promise<ApiResponse<PersonalBests[M]>> {
     const mode2String = mode2?.toString();
-      
-    const query: { mode: typeof mode, mode2?: typeof mode2String } = {
-      mode
+
+    const query: { mode: typeof mode; mode2?: typeof mode2String } = {
+      mode,
     };
- 
+
     if (mode2String !== undefined) {
       query.mode2 = mode2String;
     }
