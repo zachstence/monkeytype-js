@@ -18,5 +18,5 @@ const client = new MonkeytypeClient(apeKey);
     client.leaderboards.getRank("english", "time", "60"),
   ]);
 
-  writeFileSync("./test.json", JSON.stringify({ pbTime, pbTime60, lb, lbRank }, null, 2));
+  writeFileSync("./test/test.json", JSON.stringify({ pbTime, pbTime60, lb, lbRank }, null, 2));
 })();
