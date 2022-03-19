@@ -9,7 +9,7 @@
     "sourceType": "module"
   },
   "rules": {
-    "no-console": "warn",
+    // "no-console": "warn",
     "no-constant-condition": "error",
     "no-control-regex": "error",
     "no-debugger": "warn",
@@ -71,7 +71,7 @@
     "no-useless-call": "error",
     "no-useless-concat": "error",
     "no-void": "error",
-    "no-warning-comments": "warn",
+    // "no-warning-comments": "warn",
     "no-with": "error",
     "radix": ["error", "as-needed"],
     "vars-on-top": "error",
