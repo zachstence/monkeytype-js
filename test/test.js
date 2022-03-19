@@ -9,7 +9,6 @@ const { writeFileSync } = require("fs");
 const client = new MonkeytypeClient(apeKey);
 
 // TODO Add proper unit testing
-
 (async () => {
   const [pbTime, pbTime60, lb, lbRank] = await Promise.all([
     client.users.getPersonalBests("time"),
